@@ -28,5 +28,6 @@ public class Main {
         s1.Print();
         System.out.println(s1.Pop());
         s1.Print();
+        // test
     }
 }
