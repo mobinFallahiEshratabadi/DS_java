@@ -26,6 +26,52 @@ public class AVLTree {
         return balance(node);
     }
 
+    public boolean search(AVLNode node, int value) {
+        if (node == null) {
+            return false;
+        }
+
+        if (value == node.value) {
+            return true;
+        } else if (value < node.value) {
+            return search(node.leftChild, value);
+        } else {
+            return search(node.rightChild, value);
+        }
+    }
+
+    public void delete(int value) {
+        root = delete(root, value);
+    }
+
+    private AVLNode delete(AVLNode node, int value) {
+        if (node == null) return null;
+
+        if (value < node.value) {
+            node.leftChild = delete(node.leftChild, value);
+        } else if (value > node.value) {
+            node.rightChild = delete(node.rightChild, value);
+        } else {
+            if (node.leftChild == null) return node.rightChild;
+            if (node.rightChild == null) return node.leftChild;
+
+            AVLNode minNode = findMin(node.rightChild);
+            node.value = minNode.value;
+            node.rightChild = delete(node.rightChild, minNode.value);
+        }
+
+        setHeight(node);
+        return balance(node);
+    }
+
+    private AVLNode findMin(AVLNode node) {
+        while (node.leftChild != null) {
+            node = node.leftChild;
+        }
+        return node;
+    }
+
+
     private AVLNode balance(AVLNode node) {
         if (isLeftHeavy(node)) {
             if (balanceFactor(node.leftChild) < 0) {
