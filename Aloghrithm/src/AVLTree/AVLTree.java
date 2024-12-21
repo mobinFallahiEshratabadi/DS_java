@@ -110,7 +110,7 @@ public class AVLTree {
     }
 
     private void setHeight(AVLNode node) {
-        node.height = Math.max(height(root.leftChild), height(root.rightChild)) + 1;
+        node.height = Math.max(height(node.leftChild), height(node.rightChild)) + 1;
 
     }
 
