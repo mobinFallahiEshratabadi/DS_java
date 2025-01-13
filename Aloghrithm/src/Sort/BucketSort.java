@@ -1,21 +1,10 @@
 package Sort;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BucketSort {
-    public static void insertionSort(List<Float> bucket) {
-        for (int i = 1; i < bucket.size(); ++i) {
-            float key = bucket.get(i);
-            int j = i - 1;
-            while (j >= 0 && bucket.get(j) > key) {
-                bucket.set(j + 1, bucket.get(j));
-                j--;
-            }
-            bucket.set(j + 1, key);
-        }
-    }
-
     public static void bucketSort(float[] arr) {
         int n = arr.length;
 
@@ -30,7 +19,7 @@ public class BucketSort {
         }
 
         for (int i = 0; i < n; i++) {
-            insertionSort(buckets[i]);
+            Collections.sort(buckets[i]);
         }
 
         int index = 0;
